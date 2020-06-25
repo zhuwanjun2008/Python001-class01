@@ -51,7 +51,7 @@ if __name__ == '__main__':
     
     for i in range(10):
 
-        print(i)
+        print('page '+ str(i + 1))
 
         response_text = get_page('https://maoyan.com/films?showType=3&offset=' + str(30 * i))
 
@@ -63,9 +63,3 @@ if __name__ == '__main__':
     movie_pd = pd.DataFrame(data = movie_list_all)
 
     movie_pd.to_csv('./movie.csv', encoding='utf8', index=False, header=False)
-
-#    response_text = get_page('https://maoyan.com/films?showType=3')
-
-#    movie_pd = pd.DataFrame(data=paser_page_item(response_text))
-
-#    movie_pd.to_csv('./movie1.csv', encoding='utf8', index=False, header=False)
