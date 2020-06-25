@@ -1,7 +1,9 @@
 import requests
+from bs4 import BeautifulSoup as bs
 from time import sleep
+import pandas as pd
 
-def get_page_source(url):
+def get_page(url):
 
     #模拟浏览器请求
     header = {
@@ -23,18 +25,47 @@ def get_page_source(url):
     return(requests.get(url,headers=header).text) 
 
 
+def paser_page_item(page_source):
+
+    bs_info = bs(page_source, 'html.parser')
+    movies = []
+
+    for movie_hover_info in bs_info.find_all('div', attrs={'class': 'movie-hover-info'}):
+        for movie_name in movie_hover_info.find_all('span',attrs={'class':'name'}):
+            movie_title = '名称:' + movie_name.text
+        for movie_tag in movie_hover_info.find_all('div'):
+            for movie_span_tag in movie_tag.find_all('span',attrs={'class':'hover-tag'}):
+                if movie_span_tag.text == '类型:':
+                    movie_type = movie_tag.text.replace(' ','').replace('\n','')
+                elif movie_span_tag.text == '上映时间:':
+                    movie_time = movie_tag.text.replace(' ','').replace('\n','')
+
+        movie = [movie_title,movie_type,movie_time]
+        movies.append(movie)
+
+    return movies
+
 if __name__ == '__main__':
 
+    movie_list_all = []
+    
     for i in range(10):
 
-        print('https://maoyan.com/films?showType=3&offset=' + str(30 * i))
+        print(i)
 
-        sleep(15)
-        
-        
+        response_text = get_page('https://maoyan.com/films?showType=3&offset=' + str(30 * i))
 
-#print(get_page_source('https://maoyan.com/films?showType=3'))
+        movie_list_one = paser_page_item(response_text)
+        movie_list_all = movie_list_all + movie_list_one
 
+        sleep(10)
 
+    movie_pd = pd.DataFrame(data = movie_list_all)
 
-#https://maoyan.com/films?showType=3&offset=0
+    movie_pd.to_csv('./movie.csv', encoding='utf8', index=False, header=False)
+
+#    response_text = get_page('https://maoyan.com/films?showType=3')
+
+#    movie_pd = pd.DataFrame(data=paser_page_item(response_text))
+
+#    movie_pd.to_csv('./movie1.csv', encoding='utf8', index=False, header=False)
