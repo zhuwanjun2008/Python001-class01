@@ -62,4 +62,4 @@ if __name__ == '__main__':
 
     movie_pd = pd.DataFrame(data = movie_list_all)
 
-    movie_pd.to_csv('./movie.csv', encoding='utf8', index=False, header=False)
+    movie_pd.to_csv('./movie_task01.csv', encoding='utf8', index=False, header=False)
