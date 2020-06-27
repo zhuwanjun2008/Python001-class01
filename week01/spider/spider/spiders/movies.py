@@ -36,8 +36,6 @@ class MoviesSpider(scrapy.Spider):
             item['movie_title'] = movie_title
             item['movie_type'] = movie_type
             item['movie_time'] = movie_time
-
-            print(item)
             
             items.append(item)
 

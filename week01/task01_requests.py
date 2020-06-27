@@ -27,8 +27,9 @@ def get_page(url):
 
 def paser_page_item(page_source):
 
-    bs_info = bs(page_source, 'html.parser')
     movies = []
+
+    bs_info = bs(page_source, 'html.parser')
 
     for movie_hover_info in bs_info.find_all('div', attrs={'class': 'movie-hover-info'}):
         for movie_name in movie_hover_info.find_all('span',attrs={'class':'name'}):
@@ -51,9 +52,9 @@ if __name__ == '__main__':
     
     for i in range(10):
 
-        print('page '+ str(i + 1))
+        print(f'page: { i + 1 }')
 
-        response_text = get_page('https://maoyan.com/films?showType=3&offset=' + str(30 * i))
+        response_text = get_page(f'https://maoyan.com/films?showType=3&offset={ 30 * i }')
 
         movie_list_one = paser_page_item(response_text)
         movie_list_all = movie_list_all + movie_list_one
