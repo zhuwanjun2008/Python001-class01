@@ -21,12 +21,14 @@ class MoviesSpider(scrapy.Spider):
         for movie in movies:
             
             movie_title = movie.xpath('./div/span/text()').extract_first()
-
-            movie_info = movie.xpath('./div/text()').extract()
-            #print(movie_info)
-            movie_type = movie_info[4].strip()
-            movie_time = movie_info[8].strip()
-
             print(movie_title)
-            print(movie_type)
+
+            movie_time = movie.xpath('./div[@class="movie-hover-title movie-hover-brief"]/text()').extract()
+
+            #movie_info = movie.xpath('./div/text()').extract()
+            #print(movie_info)
+            #movie_type = movie_info[4].strip()
+            #movie_time = movie_info[8].strip()
+
+            #print(movie_type)
             print(movie_time)
