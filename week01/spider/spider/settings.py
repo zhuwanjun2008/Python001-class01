@@ -16,7 +16,7 @@ NEWSPIDER_MODULE = 'spider.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'spider (+https://maoyan.com/films)'
+#USER_AGENT = 'spider (+https://maoyan.com/films)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -39,10 +39,22 @@ DOWNLOAD_DELAY = 15
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
-#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-#   'Accept-Language': 'en',
-#}
+DEFAULT_REQUEST_HEADERS = {
+'Host': 'maoyan.com',
+'Connection': 'keep-alive',
+'Cache-Control': 'max-age=0',
+'Upgrade-Insecure-Requests': '1',
+'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36',
+'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+'Sec-Fetch-Site': 'none',
+'Sec-Fetch-Mode': 'navigate',
+'Sec-Fetch-User': '?1',
+'Sec-Fetch-Dest': 'document',
+'Accept-Encoding': 'gzip, deflate, br',
+'Accept-Language': 'zh-CN,zh;q=0.9',
+'Cookie': 'uuid_n_v=v1; uuid=247AEDF0B89711EA8C8DE3118EB8AC1A8E200533DE1C430C9759C7A6935DBF68; _lx_utm=utm_source%3DBaidu%26utm_medium%3Dorganic; _lxsdk_cuid=172f6b57d2fc8-0a102e9be3a04f-39770e5a-232800-172f6b57d2fc8; _lxsdk=247AEDF0B89711EA8C8DE3118EB8AC1A8E200533DE1C430C9759C7A6935DBF68; mojo-uuid=6f6d32e41ae61d8922fbe540cad453cf; mojo-session-id={"id":"33e3696a1098a068144b7916d694fed2","time":1593276989449}; _csrf=e0a9d9e0ed0358abd59cf555cee5a9f6fe8a90a80205c5d4418de7e87381936b; Hm_lvt_703e94591e87be68cc8da0da7cbd0be2=1593276989,1593277532; mojo-trace-id=21; Hm_lpvt_703e94591e87be68cc8da0da7cbd0be2=1593278257; __mta=49575321.1593276988811.1593278150733.1593278257360.13; _lxsdk_s=172f6b57d34-6a3-649-721%7C%7C33'
+
+}
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
