@@ -17,7 +17,7 @@ scrapy genspider movie maoyan.com
 
 3.从week01项目，迁移功能代码
 
-项目和爬虫名称变化，修改部分代码
+名称变化，修改部分代码。
 
 4.运行爬虫，调试出现的问题
 
@@ -25,3 +25,5 @@ scrapy genspider movie maoyan.com
 cd ./maoyan/maoyan/spiders
 scrapy crawl movie
 '''
+
+增加影片类型是否为空的判断，提升程序健壮性。
