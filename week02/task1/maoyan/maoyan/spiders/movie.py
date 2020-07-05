@@ -9,9 +9,12 @@ class MovieSpider(scrapy.Spider):
 
     def start_requests(self):
 
-        for i in range(0, 10):
-            url = f'https://maoyan.com/films?showType=3&offset={i*30}'
-            yield scrapy.Request(url=url,callback=self.parse)
+        try:
+            for i in range(0, 10):
+                url = f'https://maoyan.com/films?showType=3&offset={i*30}'
+                yield scrapy.Request(url=url,callback=self.parse)
+        except (Exception) as e:
+            print(e)
 
     def parse(self, response):
 
