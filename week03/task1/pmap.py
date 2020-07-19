@@ -1,7 +1,7 @@
+import argparse
 import subprocess
 import ipaddress
 import multiprocessing
-import argparse
 
 def check_ping(host):
     #调用系统命令，结果不输到终端
